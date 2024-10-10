@@ -1,4 +1,4 @@
- Data Collector
+# Data Collector
 
 Este proyecto es un recolector de datos que captura imágenes de la pantalla y las guarda en un directorio especificado. También detecta entradas de teclado y de un controlador Xbox (o cualquiera).
 
@@ -23,6 +23,14 @@ Haz doble clic en el archivo `RUN.bat` para iniciar el script de grabación. Las
 
 ## Comandos
 
-	Presione 'Q' para detener la captura de datos.
-    	Presione 'P' para pausar la captura de datos.
-    	Presione 'E' para eliminar las últimas 100 imágenes capturadas (En caso de error).
+    Presione 'Q' para detener la captura de datos.
+    Presione 'P' para pausar la captura de datos.
+    Presione 'E' para eliminar las últimas 100 imágenes capturadas (En caso de error).
+
+## Configuración del juego
+Debe jugarse con algún control (tipo ps o xbox).
+Se debe ocupar la vista en primera persona del auto.
+Desactivar opciones de linea de trazada (ayuda del juego).
+Ocupar condiciones ideales de pista.
+No pasar por los pits, desactivar cualquier opción que pueda necesitar parada de pits.
+
