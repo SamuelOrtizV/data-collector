@@ -2,8 +2,8 @@ import os
 import time
 import cv2
 from ScreenRecorder import capture_screen, preprocess_image
-from getkeys import key_check
-from xbox_controller_inputs import XboxControllerReader
+from inputs.getkeys import key_check
+from inputs.xbox_controller_inputs import XboxControllerReader
 import threading
 import glob
 
@@ -47,7 +47,6 @@ def key_detection():
             delete_event.set()
             time.sleep(0.5)
 
-
 def save_images_with_labels(image, label, save_path, id):
     """
     Guarda cada imagen individualmente en formato .jpg con un nombre que incluye
@@ -59,9 +58,7 @@ def save_images_with_labels(image, label, save_path, id):
     :param start_number: Número a partir del cual iniciar el contador para el nombre de los archivos.
     """
     file_name = f"{id}_{label}.jpeg"
-
     file_path = os.path.join(save_path, file_name)
-
     cv2.imwrite(file_path, image)
 
 def get_last_image_number(save_path):
@@ -108,6 +105,13 @@ def delete_last_images(data_path, last_img_id, num_files):
                 if deleted_files >= num_files:
                     break
         i += 1
+
+def delete_images_thread(data_path, img_id, max_fps):
+    num_imgs_to_delete = max_fps * 10
+    delete_last_images(data_path, img_id, num_imgs_to_delete)
+    img_id, dataset_size = get_last_image_number(data_path)
+    print(f"Se han eliminado las últimas {num_imgs_to_delete} imágenes capturadas. Datos guardados: {dataset_size}.")
+    delete_event.clear()
 
 def data_collector(
         data_path: str,
@@ -169,14 +173,10 @@ def data_collector(
             label = f"{steering} {throttle_brake}"
             
             if delete_event.is_set():
-                num_imgs_to_delete = max_fps * 10
-
-                delete_last_images(data_path, img_id, num_imgs_to_delete)
-
+                delete_thread = threading.Thread(target=delete_images_thread, args=(data_path, img_id, max_fps))
+                delete_thread.start()
+                delete_thread.join()
                 img_id, dataset_size = get_last_image_number(data_path)
-                
-                print(f"Se han eliminado las últimas {num_imgs_to_delete} imágenes capturadas. Datos guardados: {dataset_size}.                              ")
-                delete_event.clear()
                 continue
 
             save_images_with_labels(preprocessed_img, label, data_path, img_id)
