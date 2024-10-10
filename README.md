@@ -5,7 +5,7 @@ Este proyecto es un recolector de datos que captura imágenes de la pantalla y l
 ## Requisitos
 
 1. **Instalar Python 3.12.7**:
-Asegúrate de tener Python 3.12.7 instalado en tu sistema y que el PATH esté correctamente configurado.
+Asegúrate de tener Python >= 3.10 instalado en tu sistema y que el PATH esté correctamente configurado.
 Puedes descargarlo desde [python.org](https://www.python.org/downloads/release/python-3127/).
 
 2. **Instalar las dependencias**:
