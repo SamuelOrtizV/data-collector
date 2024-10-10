@@ -5,6 +5,7 @@ from ScreenRecorder import capture_screen, preprocess_image
 from getkeys import key_check
 from xbox_controller_inputs import XboxControllerReader
 import threading
+import glob
 
 # Parametros de entrada
 width = 1920
@@ -97,8 +98,10 @@ def delete_last_images(data_path, last_img_id, num_files):
     i = 0
     
     while deleted_files < num_files and last_img_id - i >= 0:
-        for j in range(9):
-            file_path = os.path.join(data_path, f"{last_img_id-i}_{j}.jpeg")
+        pattern = os.path.join(data_path, f"{last_img_id-i}_*.jpeg")
+        files = glob.glob(pattern)
+        
+        for file_path in files:
             if os.path.exists(file_path):
                 os.remove(file_path)
                 deleted_files += 1
