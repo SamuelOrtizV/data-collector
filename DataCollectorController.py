@@ -2,8 +2,8 @@ import os
 import time
 import cv2
 from ScreenRecorder import capture_screen, preprocess_image
-from inputs.getkeys import key_check
-from inputs.xbox_controller_inputs import XboxControllerReader
+from getkeys import key_check
+from xbox_controller_inputs import XboxControllerReader
 import threading
 import glob
 
