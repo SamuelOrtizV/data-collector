@@ -71,7 +71,7 @@ def imprimir_estado_volante() -> None:
     """
     volante = ThrustmasterT300RSReader()
 
-    print("Leyendo el estado del volante Thrustmaster T300RS (Ctrl+C para salir)...\n")
+    print("Leyendo el estado del volante (Ctrl+C para salir)...\n")
 
     try:
         while True:
