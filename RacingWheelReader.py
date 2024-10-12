@@ -57,18 +57,16 @@ class RacingWheelReader:
         """
         pygame.event.pump()  # Actualiza el estado de los eventos del joystick
         steering = self.joystick.get_axis(0)  # Eje X del volante
-        throttle = self.joystick.get_axis(2)  # Eje del pedal del acelerador
-        brake = self.joystick.get_axis(3)     # Eje del pedal del freno
+        throttle = self.joystick.get_axis(1)  # Eje del pedal del acelerador
+        brake = self.joystick.get_axis(2)     # Eje del pedal del freno
 
         # Normalizar los valores de los pedales para que estén en el rango [-1, 1]
         throttle_brake = (throttle - brake) / 2
 
         return f"{steering:.2f}", f"{throttle_brake:.2f}"
 
-def imprimir_estado_volante() -> None:
-    """
-    Función de prueba que imprime los valores del volante en la terminal.
-    """
+""" def imprimir_estado_volante() -> None:
+
     volante = RacingWheelReader()
 
     print("Leyendo el estado del volante (Ctrl+C para salir)...\n")
@@ -79,7 +77,7 @@ def imprimir_estado_volante() -> None:
             print(f"Dirección: {steering}, Acelerar/Frenar: {throttle_brake}", end="\r")
             time.sleep(0.1)  # Pausa corta para evitar un loop muy rápido
     except KeyboardInterrupt:
-        print("\nSaliendo...")
+        print("\nSaliendo...") """
 
 # Ejecutar la función para leer el estado del volante
 # if __name__ == "__main__":

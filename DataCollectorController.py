@@ -154,6 +154,8 @@ def data_collector(
     key_thread = threading.Thread(target=key_detection)
     key_thread.start()
 
+    pause_event.set()
+
     # Bucle principal
     while not stop_event.is_set():
         try:
