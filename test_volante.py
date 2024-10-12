@@ -4,9 +4,9 @@ import sys
 import logging
 from typing import Tuple
 
-class ThrustmasterT300RSReader:
+class RacingWheelReader:
     """
-    Lee el estado actual de un volante Thrustmaster T300RS y sus pedales.
+    Lee el estado actual de un volante y sus pedales.
     """
 
     joystick: pygame.joystick
@@ -69,7 +69,7 @@ def imprimir_estado_volante() -> None:
     """
     Función de prueba que imprime los valores del volante en la terminal.
     """
-    volante = ThrustmasterT300RSReader()
+    volante = RacingWheelReader()
 
     print("Leyendo el estado del volante (Ctrl+C para salir)...\n")
 
@@ -82,5 +82,5 @@ def imprimir_estado_volante() -> None:
         print("\nSaliendo...")
 
 # Ejecutar la función para leer el estado del volante
-if __name__ == "__main__":
-    imprimir_estado_volante()
+# if __name__ == "__main__":
+#    imprimir_estado_volante()
